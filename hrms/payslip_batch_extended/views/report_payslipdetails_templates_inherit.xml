@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="hr_payroll.report_payslipdetails">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- <t t-call="report.external_layout"> -->
+                <div class="header">
+                    <table width="100%" class="table table-condensed">
+                        <tr>
+                            <td align="left" width="">
+                                <br />
+                                <img src='logo' style="width:130px;height:110px" />
+                            </td>
+                            <td align="center" width="" style="font-size:14px">
+                                <br />
+                                <t t-if="o.company_id.name">
+                                        <b style="font-size:25px">
+                                            <t t-esc="o.company_id.name" />
+                                        </b>
+                                        <br />
+                                </t>
+                                <t t-if="o.company_id.partner_id.street">
+                                    <t t-esc="o.company_id.partner_id.street" />
+                                </t>
+                                <t t-if="o.company_id.partner_id.street2">
+                                    <t t-esc="o.company_id.partner_id.street2" />
+                                </t>
+                                <br />
+                                <t t-if="o.company_id.partner_id.city">
+                                    <t t-esc="o.company_id.partner_id.city" />
+                                </t>
+                                -
+                                <t t-if="o.company_id.partner_id.zip">
+                                    <t t-esc="o.company_id.partner_id.zip" />
+                                </t>
+                                <t t-if="o.company_id.partner_id.state_id.name">
+                                    <t t-esc="o.company_id.partner_id.state_id.name" />
+                                </t>
+                                <t t-if="o.company_id.partner_id.country_id">
+                                    <t t-esc="o.company_id.partner_id.country_id.name" />
+                                </t>
+                                <br />
+                                <t t-if="o.company_id.partner_id.mobile">
+                                    <b> Phone - </b>
+                                    <t t-esc="o.company_id.partner_id.mobile" />
+                                </t><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.company_id.partner_id.email">
+                                    <b> Email - </b>
+                                    <t t-esc="o.company_id.partner_id.email" />
+                                </t><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.company_id.partner_id.fax">
+                                    <b> FAX - </b>
+                                    <t t-esc="o.company_id.partner_id.fax" />
+                                </t>
+                                <br />
+                                <t t-if="o.company_id.partner_id.gstin">
+                                    <b> GSTIN - </b>
+                                    <t t-esc="o.company_id.partner_id.gstin" />
+                                </t>
+                                    <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.company_id.partner_id.pan_no">
+                                    <b> PAN No. - </b>
+                                    <t t-esc="o.company_id.partner_id.pan_no" />
+                                </t>
+                                    <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.company_id.partner_id.cin_no">
+                                    <b> CIN No. - </b>
+                                    <t t-esc="o.company_id.partner_id.cin_no" />
+                                </t>
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="footer">
+                        <table class="table table-condensed">
+                            <tr>
+                                <td class="text-left">
+                                    <ul class="list-inline">
+                                        <li>Page:</li>
+                                        <li><span class="page"/></li>
+                                        <li>/</li>
+                                        <li><span class="topage"/></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                 <div class="page">
+                    <div class="oe_structure"/>
+                        <div class="row" style="font-size:11px">
+                            <div class="col-xs-12">
+                                <!-- <table style="width:1000px;border-bottom: 1px solid;"> -->
+                                <!-- <table class="table table-bordered" style="width:1000px;padding:0px;bordercolor:E3EEF7"> -->
+                                <table class="table table-condensed" style="width:1020px;border-bottom: 1px solid black;">
+                                    <tr  style="background-color:E3EEF7;">
+                                        <td style="border: 1px solid dodgerblue;font-size:20px;" colspan="4">
+                                            <b>
+                                               <center>
+                                                <h4>Pay Slip
+                                                <span t-field="o.name"/></h4>
+                                                </center>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" colspan="2">
+                                           <strong>Name</strong> :- <span t-field="o.employee_id"/><br/>
+                                           <strong>Bank Name</strong> :- <span t-field="o.employee_id.bank_account_id.bank_id.name"/><br/>
+                                           <strong>Bank A/C No</strong> :- <span t-field="o.employee_id.bank_account_id"/><br/>
+                                           <strong>PAN No</strong> :- <span t-field="o.employee_id.pan"/><br/>
+                                           <strong>Adhar No</strong> :- <span t-field="o.employee_id.adhar_card"/>
+                                        </td>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" colspan="2">
+                                            <strong> Residential Address :-  </strong><br/>
+                                            <span t-field="o.employee_id.address_home_id.street"/>
+                                            <span t-field="o.employee_id.address_home_id.street2"/><br/>
+                                            <span t-field="o.employee_id.address_home_id.city"/><br/>
+                                            <span t-field="o.employee_id.address_home_id.state_id.name"/><br/>
+                                            <span t-field="o.employee_id.address_home_id.zip"/><br/>
+                                            <span t-field="o.employee_id.address_home_id.country_id.name"/><br/>
+                                            Phone No:<span t-field="o.employee_id.address_home_id.phone"/><br/>
+                                            <!-- <span t-field="o.employee_id.adhar_card"/><br/> -->
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" align="left">
+                                            <strong>EmpNo</strong><br/>
+                                            <strong>Designation</strong><br/>
+                                            <strong>Location</strong><br/>
+                                            <strong>Reference</strong>
+                            
+                                        </td>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" align="left">
+                                            <span t-field="o.employee_id.identification_id"/><br/>
+                                            <span t-field="o.employee_id.job_id"/><br/>
+                                            <span t-field="o.employee_id.work_location"/><br/>
+                                            <span t-field="o.number"/>
+                                        </td>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" align="left">
+                                            <strong>Payable Dates</strong><br/>
+                                            <strong>Gross</strong><br/>
+                                            <strong>P.F.No</strong><br/>
+                                            <strong>ESI No</strong><br/>
+                                            <!-- <strong>PAN</strong><br/> -->
+                                            <!-- <strong>Aadhar</strong><br/> -->
+                                            <strong>Earned Leaves</strong><br/>
+                                            <strong>Sick Leaves</strong><br/>
+                                            <strong>Casual Leaves</strong><br/>
+                                            <strong>Unused Leaves</strong><br/>
+                                            <strong>Used Leaves</strong><br/>
+                                            <strong>LWP</strong><br/>
+                                            <!-- <strong>No of days Present</strong> -->
+                                        </td>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" align="left">
+                                            <!-- <span t-field="o.date_from"/><br/> -->
+                                            <span t-esc="o.compute_difference_two_date()" /><br/>
+                                            <t t-foreach="o.line_ids" t-as="ld">
+                                            <t t-if="ld.category_id.name == 'Gross'">
+                                                <span t-field="ld.total"/>
+                                            </t>
+                                            </t>
+                                            <br/>
+                                            <span t-field="o.employee_id.pf_no"/><br/>
+                                            <span t-field="o.employee_id.esi_no"/><br/>
+                                            <span t-esc="o.leaves_type_cal_earned()" /><br/>
+                                            <span t-esc="o.leaves_type_cal_sick()"/><br/>
+                                            <span t-esc="o.leaves_type_cal_casual()"/><br/>
+                                            <span t-esc="o.unused_leaves_cal()"/><br/>
+                                            <span t-esc="o.used_leaves_cal()"/><br/>
+                                            <span t-field="o.lwp_count"/>
+                                            <!-- <span t-field="o.worked_days_line_ids.number_of_days"/><br/> -->
+                                        </td>
+                                    </tr>
+                                </table> 
+                                
+                                <table class="table table-condensed" style="width:900px;border-bottom: 1px solid black;">
+                                    <tr  style="background-color:E3EEF7;">
+                                        <td style="border: 1px solid dodgerblue;font-size:15px;" align="center">
+                                            <strong>Earnings</strong>
+                                            <table class="table table-condensed" style="width:500px;border-bottom: 1px solid black;">
+                                                
+                                                <tr style="background-color:E3EEF7;">
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Name</strong></td>
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Amount</strong></td>
+                                                </tr>
+                                                <tbody>
+                                                    <t t-foreach="o.line_ids" t-as="h">
+                                                    <t t-if="h.salary_rule_id.appears_on_payslip == True and h.salary_rule_id.appear_in_allowance == True">
+                                                        <tr>
+                                                            <td style="border: 1px solid dodgerblue;font-size:15px;" align="left">
+                                                                <span t-esc="h.salary_rule_id.name"/>
+                                                            </td>
+                                                            <td style="border: 1px solid dodgerblue;font-size:15px;" align="right">
+                                                                <span t-esc="h.total"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                    </t>
+                                                </tbody>
+                                                
+                                            </table>
+                                        </td>
+                                            
+                                        <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Deductions</strong>
+                                            <table class="table table-condensed" style="width:500px;border-bottom: 1px solid black;">
+                                                <tr  style="background-color:E3EEF7;">
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Name</strong></td>
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Amount</strong></td>
+                                                </tr>
+                                                <tbody>
+                                                    <t t-foreach="o.line_ids" t-as="h">
+                                                    <t t-if="h.salary_rule_id.appears_on_payslip == True and h.salary_rule_id.appear_in_allowance == false">
+                                                        <tr>
+                                                            <td style="border: 1px solid dodgerblue;font-size:15px;" align="left">
+                                                                <span t-esc="h.salary_rule_id.name"/>
+                                                            </td>
+                                                            <td style="border: 1px solid dodgerblue;font-size:15px;" align="right">
+                                                                <span t-esc="h.total"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        
+                                        </td>
+                                        </tr>
+                                    
+                                    <tr  style="background-color:E3EEF7;">
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" align="center" colspan="2">
+                                            <b>Year To Date : </b>
+                                            <table class="table table-condensed" style="width:1000px;border-bottom: 1px solid black;">
+                                                <tr  style="background-color:E3EEF7;">
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Name</strong></td>
+                                                    <td style="border: 1px solid dodgerblue;font-size:15px;" align="center"><strong>Amount</strong></td>
+                                                </tr>
+                                                <tbody>
+                                                    <t t-set='data' t-value="o.tod_calculate()"/>
+                                                    <t t-foreach='data' t-as="h">
+                                                    <tr>
+                                                        
+                                                            <td style="border: 1px solid dodgerblue;font-size:15px;" align="left">
+                                                                <span t-esc="h[2]"/>
+                                                            </td>
+                                                        
+                                                        <td style="border: 1px solid dodgerblue;font-size:15px;" align="right">
+                                                            <span t-esc="h[3]"/>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <!-- </t> -->
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr  style="background-color:E3EEF7;">
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" colspan="3"
+                                            align="left">
+                                            <b>Total Net Pay: Rs.</b>
+                                            <b><span t-esc="o.compute_net_pay()"/>
+                                            <span t-esc="o.convert_number2word_inv()" /></b>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid dodgerblue;font-size:14px;" colspan="3"
+                                            align="left">
+                                            This is a computer generated record and doesn't need signature
+                                        </td>
+                                    </tr>
+                                </table>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+            </t>
+    </template>
+</odoo>
+

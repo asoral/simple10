@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            string="Payslip Reports" 
+            id="action_payment_order_report_payslips" 
+            model="payment.order" 
+	        report_type="qweb-pdf" 
+	        attachment_use="True" 
+            name="payslip_batch_extended.report_make_payment_order_payslips"
+            file="payslip_batch_extended.report_make_payment_order_payslips" 
+        />
+    </data>
+</odoo>

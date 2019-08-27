@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+		<template id="report_make_payment_order_payslips">
+			<t t-call="report.html_container">
+				<t t-call="report.external_layout">
+					<t t-foreach="docs" t-as="object">
+						<div class="page">
+							<div>
+							<br/>
+							<br/>
+							<div class="header">
+			                    <table width="100%">
+			                        <tr>
+			                            <td align="center" style="font-size:20px;">
+			                                
+			                                <strong> PAYMENT ORDER PAYSLIPS </strong>
+			                            </td>
+			                        </tr>
+			                    </table>
+			                    <br/>
+			                    <table class="table table-condensed" width="100%">
+			                        <tr>
+			                            <td style="width:15%;font-size:17px;border:1px solid black">
+			                            	<strong>Name : </strong><br/>
+			                                <strong>Date : </strong><br/>
+			                                <strong>Account. : </strong><br/>
+			                            </td>
+			                            
+			                            <td style="width:43%;font-size:17px;border:1px solid black">
+			                                <t t-if="object.name">
+			                                    <span t-esc="object.name"/>
+			                                </t><br/>
+			                                <t t-if="object.date">
+			                                    <span t-esc="object.date"/>
+			                                </t><br/>
+			                                <t t-if="object.account_id.name">
+			                                    <span t-esc="object.account_id.name"/>
+			                                </t><br/>
+			                            </td>
+			                        </tr>
+			                     </table>
+							</div>
+							
+							<table class="table table-condensed" style="border:1px solid black">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Employee Code</strong></th>
+                                        <th class="text-center"><strong>Employee Name</strong></th>
+                                        <th class="text-center"><strong>Payslips</strong></th>
+                                        <!-- <th class="text-center"><strong>From Date</strong></th> -->
+                                        <!-- <th class="text-center"><strong>To Date</strong></th> -->
+                                        <th class="text-center"><strong>Net Salary</strong></th>
+                                        <th class="text-center"><strong>Bank Details</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="object.payslip_line_ids" t-as="line">
+                                        <td>
+                                            <span t-field="line.employee_id.employee_number"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.employee_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.number"/>
+                                        </td>
+                                        <!-- <td>
+                                            <span t-field="line.date_from"/>
+                                        </td> -->
+                                        <!-- <td>
+                                            <span t-field="line.date_to"/>
+                                        </td> -->
+                                        <td>
+                                            <span t-field="line.net_salary"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.employee_id.bank_account_id.acc_number"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+							<br />
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+		</template>
+</data>
+</odoo>

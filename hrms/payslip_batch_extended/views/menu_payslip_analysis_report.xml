@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--============================== Payslip analysis report tree view ====================================-->
+    <record id="view_payslip_analysis_report_tree" model="ir.ui.view">
+        <field name="name">Payslip Analysis Report</field>
+        <field name="model">payslip.analysis.report</field>
+        <field name="priority" eval="221"/>
+        <field name="arch" type="xml">
+            <tree string="Analysis">
+                <field name="slip_ref"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="structure_id"/>
+                <field name="move_id"/>
+                <field name="journal_id"/>
+                <field name="department_id"/>
+                <field name="designation_id"/>
+                <field name="category_id"/>
+                <field name="rule_id"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--============================== Payslip Analysis report search view ====================================-->
+    <record id="view_payslip_analysis_report_search" model="ir.ui.view">
+        <field name="name">payslip analysis report</field>
+        <field name="model">payslip.analysis.report</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <search string="Payslip Analysis Report">
+                <field name="employee_id" readonly="1"/>
+                <field name="department_id" readonly="1"/>
+                <field name="designation_id" readonly="1"/>
+                <field name="move_id" readonly="1"/>
+                <filter string="Employee"  name="emp_id" context="{'group_by':['employee_id']}"/>
+                <filter string="Department" name="deap_id" context="{'group_by':['department_id']}"/>
+                <filter string="Designation" name="desig_id" context="{'group_by':['designation_id']}"/>
+                <filter string="Account"  name="move_id" context="{'group_by':['move_id']}"/>
+                    <group expand="0" string="Group By...">
+                    <filter string="Employee"
+                            icon="terp-partner"
+                            domain="[]"
+                            context="{'group_by':'employee_id'}"/>
+                    <filter string="Department"
+                            icon="terp-folder-orange"
+                            domain="[]"
+                            context="{'group_by':'department_id'}"/>
+                    <filter string="Designation"
+                            icon="terp-go-month"
+                            domain="[]"
+                            context="{'group_by':'designation_id'}"/>
+                    <filter string="Move"
+                            icon="terp-go-month"
+                            domain="[]"
+                            context="{'group_by':'move_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+    
+    
+      <!--============================== Payslip analysis report pivot view ====================================-->
+    <record id="payslip_analysis_reports_pivot_view" model="ir.ui.view">
+        <field name="name">payslip.analysis.report.pivot</field>
+        <field name="model">payslip.analysis.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Payslip Analysis Report" >
+                <field name="employee_id" type="row"/>
+                <field name="department_id" type="row"/>
+                <field name="category_id" type="col"/>
+                <field name="rule_id" type="col"/>
+                <field name="total" type="measure"/>
+            </pivot>
+        </field>
+     </record>
+     
+
+</odoo>

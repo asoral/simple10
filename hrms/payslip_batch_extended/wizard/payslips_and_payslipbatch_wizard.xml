@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE xml>
+<odoo>
+    <!--Form view for wizard akhodifad -->
+    <record id="view_add_payslips_form" model="ir.ui.view">
+		<field name="name">payslips.payslipbatch.form</field>
+		<field name="model">payslips.payslipbatch</field>
+		<field name="arch" type="xml">
+		<form string="Payslips">
+			<field name="payodr_id" invisible="1"/>
+			<field name="type" invisible="1"/>
+		    <group>
+		        <field name="payslip_ids_batch" attrs="{'invisible': [('type', '=','payslips')]}" nolabel="1"/>
+		    </group>
+		    <group>
+		        <field name="payslip_ids" domain="[('paid','!=',True),('state','=','done')]" attrs="{'invisible': [('type', '=','payslip_batch')]}" nolabel="1"/>
+		    </group>
+		    <footer>
+		        <button name="add_payslips" string="Add Payslips"
+		            type="object" class="oe_highlight" />
+		        <button string="Cancel" icon="fa-close" class="btn btn-primary" special="cancel" />
+		    </footer>
+		</form>
+        </field>
+    </record>
+
+    <!--Action for wizard akhodifad -->
+    <record id="action_payslipbatch_id" model="ir.actions.act_window">
+		<field name="name">Payslips</field>
+		<field name="res_model">payslips.payslipbatch</field>
+		<field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- <menuitem id="id_menu" name="Menu Name"
+        action="action_id"
+        parent="module_name.view_id" sequence="5" /> -->
+
+</odoo>
